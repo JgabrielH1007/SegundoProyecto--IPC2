@@ -48,6 +48,22 @@ public class ClaseDBUsuario {
         }
     }
 
+    public boolean usuarioExiste(Usuario usuario) {
+        String query = "SELECT COUNT(*) FROM usuario WHERE user_name = ?";
+        try (Connection con = DataSourceDBSingleton.getInstance().getConnection(); PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setString(1, usuario.getUserName());
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Retorna true si hay al menos un registro
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Retorna false si ocurre una excepción o no se encuentra el usuario
+    }
+
     // Método para obtener un usuario por nombre de usuario y contraseña
     public Usuario obtenerUsuario(String userName, String password) {
         Usuario user = null;

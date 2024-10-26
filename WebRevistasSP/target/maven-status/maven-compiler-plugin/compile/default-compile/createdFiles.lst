@@ -1,0 +1,6 @@
+Backend/Usuario/Usuario.class
+Backend/DataBase/DataSourceDBSingleton.class
+Backend/Revistas/Revista.class
+com/mycompany/webrevistassp/JakartaRestConfiguration.class
+Backend/Usuario/Rol.class
+com/mycompany/webrevistassp/resources/JakartaEE10Resource.class

@@ -15,6 +15,10 @@ public class AdministradorUsuario {
     ClaseDBUsuario dbUser = new ClaseDBUsuario();
     
     public void crearUsuario(Usuario usuario){
+        if(verificacionDatosNewUser(usuario) || dbUser.usuarioExiste(usuario)){
+            
+        }
+        
         usuario.setPassword(hashPassword(usuario.getPassword()));
         dbUser.crearUsuario(usuario);
     }
@@ -42,6 +46,10 @@ public class AdministradorUsuario {
     
     private boolean checkPassword(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);
+    }
+    
+    private boolean verificacionDatosNewUser(Usuario usuario){
+        return usuario.getUserName() != null || usuario.getRol() != null || usuario.getCartera() > 0;
     }
     
 }
